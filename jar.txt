@@ -1,0 +1,12 @@
+f1- ajuda
+f2- selecionar
+f3- bpm dec
+f4- bpm inc
+
+f5- reset
+f6- play
+f7- stop
+f8- metronomo
+
+f9- exportar html
+f10- exportar 3d
