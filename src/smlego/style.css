@@ -26,6 +26,21 @@
     -fx-background-color: #316e60;
 }
 
+.button_3 {
+    border: 0;
+    outline: 0;
+    -fx-text-fill: #fff;
+    background-color: #316e60;
+    -fx-background-color: #316e60;
+    -fx-background-radius: 0;
+}
+
+.button_3:hover {
+    background-color: #2F695B;
+    -fx-background-color: #2F695B;
+}
+
+
 .textField {
     border: 0;
     outline: 0;

@@ -24,18 +24,18 @@ public class Player implements MetaEventListener {
 
     private void setSeq(Sequence seq){
         this.seq = seq;
-        System.out.println("Player-> setSeq seq =" + seq);
+        //System.out.println("Player-> setSeq seq =" + seq);
     }
 
     public Sequence getSeq(){
-        System.out.println("Player-> getSeq seq =" + seq);
+        //System.out.println("Player-> getSeq seq =" + seq);
         return seq;
     }
 
 
     public void setBPM(int bpm){
         this.bpm = bpm;
-        System.out.println("Player->setBPM = " + bpm);
+        //System.out.println("Player->setBPM = " + bpm);
     }
 
     public int getBPM(){
@@ -44,13 +44,13 @@ public class Player implements MetaEventListener {
 
     public /*Sequence*/ void create(int vectorLenght, String[] vetor) {
 
-        System.out.println("***CRIA A SEQUENCIA****");
+        //System.out.println("***CRIA A SEQUENCIA****");
         this.vectorLength = vectorLenght;
         this.vector = vetor;
 
         try {
             openSequencer();//PADRÃO RITMICO
-            System.out.println("***ABRIU O SEQUENCER DO PADRÃO***");
+            //System.out.println("***ABRIU O SEQUENCER DO PADRÃO***");
             //openSequencerMetronome();// METRONOMO
             setSeq(createSequence());
             //Sequence seqMetronome = createSequenceMetronome();
@@ -79,32 +79,32 @@ public class Player implements MetaEventListener {
             //Track main_track_metronome = seq_metronome.createTrack();
             //int x = vectorLength +1;
             //int i = 0;
-            System.out.println("Player-> vectorLength= " + vectorLength);
+            //System.out.println("Player-> vectorLength= " + vectorLength);
 
             for(int i=0; i < vectorLength ; i++){
 
                 if(vector[i].equals("\u25CF")){
-                    System.out.println("Player-> i NA CONTRUÇÃO ON= " + i );
+                    //System.out.println("Player-> i NA CONTRUÇÃO ON= " + i );
                     addNoteEventON(TrackPlayer,i+1);
-                    System.out.println("Player-> Full= "+ vector[i] );
+                    //System.out.println("Player-> Full= "+ vector[i] );
                 }
                 if(vector[i].equals("\u25CB")) {
                     addNoteEventOFF(TrackPlayer, i+1);
-                    System.out.println("Player-> i NA CONTRUÇÃO OFF= " + i );
-                    System.out.println("Player-> Empty= "+ vector[i]);
+                    //System.out.println("Player-> i NA CONTRUÇÃO OFF= " + i );
+                    //System.out.println("Player-> Empty= "+ vector[i]);
                 }
                 if (i%2 == 0){
-                    System.out.println("Player-> i%2 = " + (i%2));
+                    //System.out.println("Player-> i%2 = " + (i%2));
                     addMetronomeEventON(TrackMetronomo, i+1);
-                    System.out.println("Player-> ADD METRO EVENT ON");
+                    //System.out.println("Player-> ADD METRO EVENT ON");
                 }
                 else {
                     addMetronomeEventOFF(TrackMetronomo, i+1);
-                    System.out.println("Player-> ADD METRO EVENT OFF");
+                    //System.out.println("Player-> ADD METRO EVENT OFF");
                 }
             }
 
-            System.out.println("Player->createSequence Sequencia = " + seq);
+            //System.out.println("Player->createSequence Sequencia = " + seq);
             return seq;
 
         } catch (InvalidMidiDataException ex) {
@@ -117,8 +117,8 @@ public class Player implements MetaEventListener {
         long y = extractedTick(tick);
         ShortMessage message = new ShortMessage(ShortMessage.NOTE_ON, 9, 37, 100);
         MidiEvent event = new MidiEvent(message, y);
-        System.out.println("Player-> TICK on = " + y);
-        //System.out.println("SEQUENCER TICK ON = " + mainTrack.y());
+        //System.out.println("Player-> TICK on = " + y);
+        ////System.out.println("SEQUENCER TICK ON = " + mainTrack.y());
         mainTrack.add(event);
     }
 
@@ -130,8 +130,8 @@ public class Player implements MetaEventListener {
         long y = Long.valueOf(tick);
         ShortMessage message = new ShortMessage(ShortMessage.NOTE_OFF, 9, 37, 100);
         MidiEvent event = new MidiEvent(message, y);
-        System.out.println("Player-> TICK off= " + y);
-        //System.out.println("SEQUENCER TICK OFF = " + mainTrack.ticks());
+        //System.out.println("Player-> TICK off= " + y);
+        ////System.out.println("SEQUENCER TICK OFF = " + mainTrack.ticks());
         mainTrack.add(event);
     }
     //ADICIONA NOTAS DENTRO DA TRACK
@@ -148,20 +148,20 @@ public class Player implements MetaEventListener {
         ShortMessage message = new ShortMessage(ShortMessage.NOTE_OFF, 10, 100, 40);
         MidiEvent event = new MidiEvent(message, y);
         mainTrackMetronome.add(event);
-        //System.out.println("ADD EVENTO Off = " + mainTrackMetronome);
+        ////System.out.println("ADD EVENTO Off = " + mainTrackMetronome);
     }
 
     public void startSequence() throws InvalidMidiDataException {
 
-        System.out.println("Player-> startSequencer-> getFirst = " + Controller.getPlayButton());
+        //System.out.println("Player-> startSequencer-> getFirst = " + Controller.getPlayButton());
 
         sequencer.setSequence(getSeq());
-        System.out.println("Player-> startSequence-> getSeq() = " + getSeq());
-        System.out.println("Player-> startSequence-> getBPM() =  " + getBPM());
+        //System.out.println("Player-> startSequence-> getSeq() = " + getSeq());
+        //System.out.println("Player-> startSequence-> getBPM() =  " + getBPM());
 
         sequencer.setTempoInBPM(getBPM());
         //executar o pattern normalmente
-        System.out.println("Player-> startSequence-> Controller.getFirst() = " + Controller.getPlayButton());
+        //System.out.println("Player-> startSequence-> Controller.getFirst() = " + Controller.getPlayButton());
         sequencer.start();
 
 
@@ -175,12 +175,12 @@ public class Player implements MetaEventListener {
             */
 
         //muteMetronome(getSeq());
-        //System.out.println("Player-> startSequence-> mute =" + mute);
+        ////System.out.println("Player-> startSequence-> mute =" + mute);
         long y = getSeq().getTickLength();
-        System.out.println("Player-> startSequence-> TICK LENGTH = " + y);
+        //System.out.println("Player-> startSequence-> TICK LENGTH = " + y);
         //return seq;
 
-        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        //System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 
 
 

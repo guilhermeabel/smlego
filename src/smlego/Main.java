@@ -1,6 +1,7 @@
 package smlego;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,7 +25,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
 
         stage.initStyle(StageStyle.TRANSPARENT);
-        scene = new Scene(loadFXML("primary.fxml"), 600, 745);
+        scene = new Scene(loadFXML("primary.fxml"), 800, 600);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
@@ -49,6 +50,8 @@ public class Main extends Application {
         Parent root = loader.load();
         return root;
     }
+
+
 
     public static void main(String[] args) {
         launch();

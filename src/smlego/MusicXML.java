@@ -17,7 +17,7 @@ public class MusicXML {
             }
             br.close();
         } catch (Exception e) {
-            System.out.println(e);
+            //System.out.println(e);
         }
         return lines;
     }
@@ -35,7 +35,7 @@ public class MusicXML {
             }
             br.close();
         } catch (Exception e) {
-            System.out.println(e);
+            //System.out.println(e);
         }
         return matriz;
     }

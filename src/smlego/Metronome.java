@@ -23,13 +23,13 @@ public class Metronome implements MetaEventListener {
     /****************************************************************************************/
 
     public void sequenceMetronomo() {
-        //System.out.println("metronomeButton->getBPM = " + bpmMetronomo);
+        ////System.out.println("metronomeButton->getBPM = " + bpmMetronomo);
 
         if(play == false){
 
             try {
                 openSequencer();//METRNÔNOMO
-                System.out.println("***ABRIU O SEQUENCER DO METRONOMO na classe Metronome***");
+                //System.out.println("***ABRIU O SEQUENCER DO METRONOMO na classe Metronome***");
                 setSeqMetronome(createSequenceMetronome());
             } catch (MidiUnavailableException ex) {
                 Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,15 +54,15 @@ public class Metronome implements MetaEventListener {
             for(int i=0; i < 2 ; i++){
 
                 if(i == 0){
-                    System.out.println("Metronome-> i NA CONTRUÇÃO MetronomoON= " + i );
+                    //System.out.println("Metronome-> i NA CONTRUÇÃO MetronomoON= " + i );
                     addMetronomeEventON(TrackMetronomo,i+1);
 
                 }else {
                     addMetronomeEventOFF(TrackMetronomo, i+1);
-                    System.out.println("Metronome-> i NA CONTRUÇÃO Metronomo OFF= " + i );
+                    //System.out.println("Metronome-> i NA CONTRUÇÃO Metronomo OFF= " + i );
                 }
             }
-            System.out.println("Metronome->createSequence Metronomo = " + seqMetronomo);
+            //System.out.println("Metronome->createSequence Metronomo = " + seqMetronomo);
             return seqMetronomo;
         } catch (InvalidMidiDataException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
@@ -73,7 +73,7 @@ public class Metronome implements MetaEventListener {
 
     private void setSeqMetronome (Sequence seqMetronome){
         this.seqMetronome = seqMetronome;
-        System.out.println("Metronome-> setSeqMetronome = " + seqMetronome);
+        //System.out.println("Metronome-> setSeqMetronome = " + seqMetronome);
     }
 
     private Long extractedTick(int tick) {
@@ -99,31 +99,31 @@ public class Metronome implements MetaEventListener {
         ShortMessage message = new ShortMessage(ShortMessage.NOTE_OFF, 10, 100, 40);
         MidiEvent event = new MidiEvent(message, y);
         mainTrackMetronome.add(event);
-        //System.out.println("ADD EVENTO Off = " + mainTrackMetronome);
+        ////System.out.println("ADD EVENTO Off = " + mainTrackMetronome);
     }
 
     public void playMetronomo() throws InvalidMidiDataException {
 
         sequencerMetronome.setSequence(getSeqMetronome());
-        System.out.println("Metronome->Sequence metronome->getSeq() = " + getSeqMetronome());
+        //System.out.println("Metronome->Sequence metronome->getSeq() = " + getSeqMetronome());
         sequencerMetronome.setTempoInBPM(getBpmMetronomo());
-        System.out.println("Metronome->sequenceMetro-> bpmMetronomo = " + getBpmMetronomo());
+        //System.out.println("Metronome->sequenceMetro-> bpmMetronomo = " + getBpmMetronomo());
         sequencerMetronome.start();
         //sequencerMetronome.setLoopCount(LOOP_CONTINUOUSLY);
         long y = getSeqMetronome().getTickLength();
-        System.out.println("Metronome-> TICK LENGTH = " + y);
+        //System.out.println("Metronome-> TICK LENGTH = " + y);
         //return seq;
 
     }
 
     public Sequence getSeqMetronome(){
-        System.out.println("Metronome-> getSeqMetronome =" + seqMetronome);
+        //System.out.println("Metronome-> getSeqMetronome =" + seqMetronome);
         return seqMetronome;
     }
 
     public void setBpmMetronomo(int bpmMetronomo){
         this.bpmMetronomo = bpmMetronomo;
-        System.out.println("Metronome->setBPM = " + bpmMetronomo);
+        //System.out.println("Metronome->setBPM = " + bpmMetronomo);
     }
 
     public int getBpmMetronomo(){
@@ -142,7 +142,7 @@ public class Metronome implements MetaEventListener {
     }
 
     public void changeTempoMetronomo (int bpm){
-        System.out.println("/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/");
+        //System.out.println("/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/");
         double lengthCoeff = bpm/sequencerMetronome.getTempoInBPM();
         sequencerMetronome.setLoopStartPoint((long)(sequencerMetronome.getLoopStartPoint()*lengthCoeff));
         sequencerMetronome.setLoopEndPoint((long)(sequencerMetronome.getLoopStartPoint()*lengthCoeff));

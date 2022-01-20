@@ -11,6 +11,10 @@ import javax.sound.midi.Sequence;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
@@ -52,8 +56,11 @@ public class Controller {
     /**************************************************************************************** */
 
     @FXML
+    private Button switchButton;
+
+    @FXML
     private void switchToSecondary() throws IOException {
-        Main.setRoot("primary");
+        Main.setRoot("secondary");
     }
 
 
@@ -118,6 +125,14 @@ public class Controller {
     private Button btnOutputHtml;
 
 
+    private Stage stage;
+
+    private Scene scene;
+
+    private Parent root;
+
+    private double xOffset;
+    private double yOffset;
 
     /*************************    MÉTODOS DOS AÇÕES DA INTERFACE  ********************************** */
 
@@ -126,16 +141,34 @@ public class Controller {
         play.setDisable(true);
         stop.setDisable(true);
         reset.setDisable(true);
+        btnOutputHtml.setDisable(true);
         displayBPM();
         createMetronome();
     }
+
+    public void switchToPrimary(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("primary.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root, 800, 600);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToSecondary(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root, 1000, 600);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     @FXML
     void bpmSlider(MouseEvent event) {
         this.bpm = (int) sliderBPM.getValue();
         displayBPM();
-        System.out.println("Controller-> BPMSLIDER");
-        // System.out.println("bpmSlider = " + sliderBPM.getValue());
+        //System.out.println("Controller-> BPMSLIDER");
+        // //System.out.println("bpmSlider = " + sliderBPM.getValue());
 
         // testa se existe o padrão rítmico
         if (classe == true)playerSeq.changeTempo(getBPM());
@@ -155,23 +188,43 @@ public class Controller {
         }
     }
 
+    void openIndex() {
+        if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File(System.getProperty("user.dir") + "/index/index.html");
+                Desktop.getDesktop().open(myFile);
+            } catch (IOException ex) {
+                // no application registered for html
+            }
+        }
+    }
+
     @FXML
     void metronomeButton(ActionEvent event) throws InvalidMidiDataException, MidiUnavailableException {
 
         // verifica se já existe um padrão rítmico
         // toca e inicia o metronomo
         if (!getClasse()) {
-            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-            System.out.println("Controller-> metronomeButton-> classe if =" + classe);
+            //System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+            //System.out.println("Controller-> metronomeButton-> classe if =" + classe);
             if (!getPlayingMetronomo()) {
                 setBPM();
                 metronomeMetronomo.setBpmMetronomo(getBPM());
                 setPlayingMetronomo(true);
-                metronome1.setText(ACTION_2);
+                if (metronome1.getText() == "\ud83d\udd14"){
+                    metronome1.setText("\u274c");
+                } else {
+                    metronome1.setText("PARAR METRÔNOMO");
+                }
                 metronomeMetronomo.playMetronomo();
+
             } else {
                 metronomeMetronomo.stopMetronomoPlayback();
-                metronome1.setText(ACTION_1);
+                if (metronome1.getText() == "\u274c"){
+                    metronome1.setText("\ud83d\udd14");
+                } else {
+                    metronome1.setText("LIGAR METRÔNOMO");
+                }
                 setPlayingMetronomo(false);
             }
         }
@@ -180,14 +233,14 @@ public class Controller {
         else {
 
             if(getMuteMetronome()){
-                System.out.println("9090909009090909900990990099009900990909909090909009099090090990");
+                //System.out.println("9090909009090909900990990099009900990909909090909009099090090990");
                 // indica o se a track metronomo vai se habilitado ou desabilitado
                 setMuteMetronome (playerSeq.muteMetronome(playerSeq.getSeq()));
                 metronome1.setText(ACTION_2);
 
             }
             else {
-                System.out.println("123321123321123321123321123321123321123321123");
+                //System.out.println("123321123321123321123321123321123321123321123");
                 setMuteMetronome (playerSeq.muteMetronome(playerSeq.getSeq()));
                 metronome1.setText(ACTION_1);
             }
@@ -261,6 +314,7 @@ public class Controller {
         play.setDisable(true);
         stop.setDisable(true);
         reset.setDisable(true);
+        btnOutputHtml.setDisable(true);
         fileButton.setDisable(false);
         metronome1.setDisable(false);
         metronome1.setText(ACTION_1);
@@ -343,13 +397,14 @@ public class Controller {
             reset.setDisable(false);
             stop.setDisable(true);
             fileButton.setDisable(true);
+            btnOutputHtml.setDisable(false);
             config();
             classe = true;
         } else
             fileButton.setDisable(false);
 
         if (playingMetronomo == true){
-            System.out.println("&*(&*(&*(&*(&*(&*(&*(&*(&*(&*(&*(*(&*(&(");
+            //System.out.println("&*(&*(&*(&*(&*(&*(&*(&*(&*(&*(&*(*(&*(&(");
             metronomeMetronomo.stopMetronomoPlayback();
             metronome1.setText(ACTION_1);
 
@@ -366,7 +421,7 @@ public class Controller {
         } else {
             this.bpm++;
             displayBPM();
-            System.out.println("Controller-> BPM inc ");
+            //System.out.println("Controller-> BPM inc ");
         }
         setBpmSlider();
 
@@ -408,8 +463,9 @@ public class Controller {
 
     @FXML
     void outputHtml(ActionEvent event) throws MidiUnavailableException {
-        resetFields();
-        config();
+        if (playerSeq != null) {
+            config();
+        }
     }
 
 
@@ -457,7 +513,7 @@ public class Controller {
 
     public void setPlayPatternMetronomo(boolean playPatternMetronomo) {
         this.playPatternMetronomo = playPatternMetronomo;
-        System.out.println("playPatternMetronomo = " + getPlayPatternMetronomo());
+        //System.out.println("playPatternMetronomo = " + getPlayPatternMetronomo());
     }
 
     public boolean getPlayPatternMetronomo() {
@@ -474,7 +530,7 @@ public class Controller {
 
     public void setBPM(/* int bpm */) {
         this.bpm = (int) sliderBPM.getValue();
-        System.out.println("Controller->  setBPM = " + bpm);
+        //System.out.println("Controller->  setBPM = " + bpm);
     }
 
     public int getBPM() {
@@ -482,22 +538,22 @@ public class Controller {
     }
 
     private void setVector(String[] vector) {
-        System.out.println("Controller-> set vector");
+        //System.out.println("Controller-> set vector");
         this.vector = vector;
     }
 
     public String[] getVector() {
-        System.out.println("Controller-> get vector");
+        //System.out.println("Controller-> get vector");
         return vector;
     }
 
     private void setVectorLength(int vectorLength) {
-        System.out.println("Controller-> set VectorLength");
+        //System.out.println("Controller-> set VectorLength");
         this.vectorLength = vectorLength;
     }
 
     public int getVectorLength() {
-        System.out.println("Controller-> set VectorLength");
+        //System.out.println("Controller-> set VectorLength");
         return vectorLength;
     }
 
@@ -520,18 +576,18 @@ public class Controller {
     /****************************    MÉTODOS DIVERSOS      *************************************** */
 
     private void config() throws MidiUnavailableException {
-        System.out.println("Controller-> INICIOU CONFIG");
-        System.out.println("Controller-> bpm = " + (int) sliderBPM.getValue());
-        setBPM(/* (int)sliderBPM.getValue() */);
+//        //System.out.println("Controller-> INICIOU CONFIG");
+//        //System.out.println("Controller-> bpm = " + (int) sliderBPM.getValue());
+        setBPM(/*(int)sliderBPM.getValue()*/);
         MusicXML musicXML = new MusicXML();
         Parser parser = new Parser();
         Note note = new Note();
         Output output = new Output();
         playerSeq = new Player();
         /*
-         * if (classe == false){ System.out.println("BOOLEAN CLASSE = " + classe);
+         * if (classe == false){ //System.out.println("BOOLEAN CLASSE = " + classe);
          * playerMetronomo = new Player(); classe = true;
-         * System.out.println("BOOLEAN CLASSE = " + classe); }
+         * //System.out.println("BOOLEAN CLASSE = " + classe); }
          */
         // var metronome = new Metronome();
         // BUSCA O CAMINHO DO ARQUIVO QUE SERA TRADUZIDO NO FORMATO .musicXML
@@ -542,7 +598,7 @@ public class Controller {
         String[][] array = musicXML.readFile(fileName, lines);
         // BUSCA O TAMANHO DO VETOR
         // int vectorLenght = note.getVectorLenght(lines, array);
-        System.out.println("Controller-> vai entrar no set vector");
+        //System.out.println("Controller-> vai entrar no set vector");
         setVectorLength(note.getVectorLenght(lines, array));
         setVector(parser.vectorCreate(lines, array, getVectorLength()));
 
@@ -550,6 +606,9 @@ public class Controller {
         String outArray[][] = new String[2][(getVectorLength() / 2) + 1];
         outArray = parser.setSimpleArray(getVector(), getVectorLength());
         // exibe na GUI o conteúdo do vetor
+
+        sheetPanel.selectAll();
+        sheetPanel.replaceSelection("");
 
         for (int i = 0, pos0 = 0, pos1 = 0; i < 4; i++) {
             if (i > 0) {
@@ -579,19 +638,20 @@ public class Controller {
             }
         }
         // output.getAtributos(lines, array);
-        System.out.println("Controller-> CRIA ARQUIVO");
+        //System.out.println("Controller-> CRIA ARQUIVO");
         output.createFile(lines, array, outArray);
-        // System.out.println("Controller-> SEQUENCIA DO METRONOMO =" +
+        // //System.out.println("Controller-> SEQUENCIA DO METRONOMO =" +
         // seqMetronome);
         // CRIAR A SEQUENCIA DO METRONOMO
-        System.out.println("Controller-> TAMANHO VETOR= " + getVectorLength());
-        System.out.println("Controller-> VETOR =" + vector[0]);
+//        //System.out.println("Controller-> TAMANHO VETOR= " + getVectorLength());
+//        //System.out.println("Controller-> VETOR =" + vector[0]);
 
         // seqMetronome = metronome.createSequence(getVectorLength(), getVector());
-        // System.out.println("Controller-> SEQUENCIA DO METRONOMO = " +
+        // //System.out.println("Controller-> SEQUENCIA DO METRONOMO = " +
         // seqMetronome);
-        System.out.println("Controller->config() bpm= " + getBPM());
+        //System.out.println("Controller->config() bpm= " + getBPM());
         playerSeq.create(getVectorLength(), getVector());
+        openIndex();
     }
 
     private void resetFields() {
