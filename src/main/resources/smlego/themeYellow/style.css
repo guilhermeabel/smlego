@@ -1,0 +1,50 @@
+.button {
+    border: 0;
+    outline: 0;
+    background-color: #e9e50c;
+    -fx-text-fill: #000;
+    -fx-background-color: #e9e50c;
+    -fx-background-radius: 0;
+}
+
+.button:hover {
+    background-color: #fffb00;
+    -fx-background-color: #fffb00;
+}
+
+.textField {
+    border: 0;
+    outline: 0;
+    background-color: #e9e50c;
+    -fx-text-fill: #000;
+    -fx-background-color: #e9e50c;
+    -fx-background-radius: 0;
+}
+
+.sliderBPM {
+    border: 0;
+    outline: 0;
+    background-color: #000;
+    -fx-text-fill: #e9e50c;
+    -fx-background-color: #000;
+    -fx-background-radius: 0;
+}
+
+.sheetPanel {
+    -fx-text-fill: #e9e50c;
+    -fx-background-radius: 0;
+    -text-area-background: #000;
+    border-color: rgb(0, 0, 0);
+    -fx-border-color: #e9e50c;
+    font-size: 3.5em;
+    -fx-font-size: 3.5em;
+    font-family: Arial;
+    -fx-font-family: Arial;
+}
+
+.sheetPanel .content {
+    background-color: #374858;
+    -fx-background-color: -text-area-background;
+    border-color: #000;
+    -fx-border-color: #000;
+}
