@@ -9,12 +9,12 @@ public class Player implements MetaEventListener {
     boolean mute = false;
     boolean mutePattern = false;
     boolean toca = false;
-    Controller Controller = new Controller();
+    ViewController Controller = new ViewController();
 
     private static Sequencer sequencer;
 
     int bpm;
-    int bpmMetronomo;
+    int bpmMetronome;
     int vectorLength;
     String[] vector;
     Sequence seq;
@@ -59,7 +59,7 @@ public class Player implements MetaEventListener {
         try {
             Sequence seq = new Sequence(Sequence.PPQ, 2);
             Track TrackPlayer = seq.createTrack();
-            Track TrackMetronomo = seq.createTrack();
+            Track TrackMetronome = seq.createTrack();
             for (int i = 0; i < vectorLength; i++) {
 
                 if (vector[i].equals("\u25CF")) {
@@ -69,9 +69,9 @@ public class Player implements MetaEventListener {
                     addNoteEventOFF(TrackPlayer, i + 1);
                 }
                 if (i % 2 == 0) {
-                    addMetronomeEventON(TrackMetronomo, i + 1);
+                    addMetronomeEventON(TrackMetronome, i + 1);
                 } else {
-                    addMetronomeEventOFF(TrackMetronomo, i + 1);
+                    addMetronomeEventOFF(TrackMetronome, i + 1);
                 }
             }
 

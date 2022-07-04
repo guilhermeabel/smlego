@@ -7,10 +7,10 @@ import javax.sound.midi.*;
 public class Metronome implements MetaEventListener {
     boolean play;
     Sequence seqMetronome;
-    private int bpmMetronomo;
+    private int bpmMetronome;
     private static Sequencer sequencerMetronome;
 
-    public void sequenceMetronomo() {
+    public void sequenceMetronome() {
         if (play == false) {
 
             try {
@@ -31,20 +31,20 @@ public class Metronome implements MetaEventListener {
 
     private Sequence createSequenceMetronome() {
         try {
-            Sequence seqMetronomo = new Sequence(Sequence.PPQ, 2);// PPQ= Pulse per quarter - 2 quer dizer pulsos por
+            Sequence seqMetronome = new Sequence(Sequence.PPQ, 2);// PPQ= Pulse per quarter - 2 quer dizer pulsos por
                                                                   // seminima
-            Track TrackMetronomo = seqMetronomo.createTrack();
+            Track TrackMetronome = seqMetronome.createTrack();
 
             for (int i = 0; i < 2; i++) {
 
                 if (i == 0) {
-                    addMetronomeEventON(TrackMetronomo, i + 1);
+                    addMetronomeEventON(TrackMetronome, i + 1);
 
                 } else {
-                    addMetronomeEventOFF(TrackMetronomo, i + 1);
+                    addMetronomeEventOFF(TrackMetronome, i + 1);
                 }
             }
-            return seqMetronomo;
+            return seqMetronome;
         } catch (InvalidMidiDataException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
             return null;
@@ -77,10 +77,9 @@ public class Metronome implements MetaEventListener {
         mainTrackMetronome.add(event);
     }
 
-    public void playMetronomo() throws InvalidMidiDataException {
-
+    public void playMetronome() throws InvalidMidiDataException {
         sequencerMetronome.setSequence(getSeqMetronome());
-        sequencerMetronome.setTempoInBPM(getBpmMetronomo());
+        sequencerMetronome.setTempoInBPM(getBpmMetronome());
         sequencerMetronome.start();
     }
 
@@ -88,31 +87,30 @@ public class Metronome implements MetaEventListener {
         return seqMetronome;
     }
 
-    public void setBpmMetronomo(int bpmMetronomo) {
-        this.bpmMetronomo = bpmMetronomo;
+    public void setBpmMetronome(int bpmMetronome) {
+        this.bpmMetronome = bpmMetronome;
     }
 
-    public int getBpmMetronomo() {
-        return bpmMetronomo;
+    public int getBpmMetronome() {
+        return bpmMetronome;
     }
 
-    protected void stopMetronomoPlayback() {
+    protected void stopMetronomePlayback() {
         sequencerMetronome.getSequence();
         sequencerMetronome.stop();
         sequencerMetronome.setTickPosition(0);
-
     }
 
     public void closeSeqMetronome() {
         sequencerMetronome.close();
     }
 
-    public void changeTempoMetronomo(int bpm) {
+    public void changeTempoMetronome(int bpm) {
         double lengthCoeff = bpm / sequencerMetronome.getTempoInBPM();
         sequencerMetronome.setLoopStartPoint((long) (sequencerMetronome.getLoopStartPoint() * lengthCoeff));
         sequencerMetronome.setLoopEndPoint((long) (sequencerMetronome.getLoopStartPoint() * lengthCoeff));
         sequencerMetronome.setTempoInBPM(bpm);
-        setBpmMetronomo(bpm);
+        setBpmMetronome(bpm);
     }
 
     public void meta(MetaMessage message) {
@@ -129,7 +127,7 @@ public class Metronome implements MetaEventListener {
         sequencerMetronome.setTickPosition(0);
         sequencerMetronome.setLoopStartPoint(0);
         sequencerMetronome.start();
-        sequencerMetronome.setTempoInBPM(getBpmMetronomo());
+        sequencerMetronome.setTempoInBPM(getBpmMetronome());
         sequencerMetronome.setTempoFactor(1);
     }
 

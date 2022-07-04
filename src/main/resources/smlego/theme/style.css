@@ -1,0 +1,278 @@
+#lightTheme {
+	-color-primary: #000;
+	-color-secondary: #005FB8;
+	-color-hover: #ededed;
+	-color-bg: #ffffff; 
+	background-color: -color-bg;
+	-fx-background-color: -color-bg;
+}
+
+#lightTheme .titlePane{
+	background-color: -color-secondary;
+	-fx-background-color: -color-secondary;
+	-fx-background-radius: 0 0 8px 8px;
+	border-radius: 0 0 8px 8px;
+	-fx-border-radius: 0 0 8px 8px;
+
+}
+
+#lightTheme .sheetPane{
+	background-color: -color-secondary;
+	-fx-background-color: -color-secondary;
+	-fx-background-radius: 8px;
+	border-radius: 8px;
+	-fx-border-radius: 8px;
+	border-color: -color-secondary;
+	-fx-border-color: -color-secondary;
+}
+
+#lightTheme .title{
+	font-size: 28pt;
+	-fx-font-size: 28pt;
+	font-family: 'Arial';
+	-fx-font-family: 'Arial';
+	font-weight: bold;
+	-fx-font-weight: bold;
+	fill: -color-bg;
+	-fx-fill: -color-bg;
+}
+
+#lightTheme .button{
+	font-size: 16pt;
+	-fx-font-size: 16pt;
+	font-family: 'Arial';
+	-fx-font-family: 'Arial';
+	font-weight: bold;
+	-fx-font-weight: bold;
+	fill: -color-bg;
+	-fx-text-fill: -color-bg;
+	-fx-background-radius: 8px;
+	background-color: -color-secondary;
+	-fx-background-color: -color-secondary;
+}
+
+#lightTheme .button-small{
+	font-size: 14pt;
+	-fx-font-size: 14pt;
+	font-family: 'Arial';
+	-fx-font-family: 'Arial';
+	font-weight: bold;
+	-fx-font-weight: bold;
+	fill: -color-secondary;
+	-fx-text-fill: -color-secondary;
+	border-radius: 8px;
+	-fx-border-radius: 8px;
+	background-color: -color-bg;
+	-fx-background-color: -color-bg;
+}
+
+#lightTheme .textField{
+	font-size: 14pt;
+	-fx-font-size: 14pt;
+	fill: -color-primary;
+	-fx-text-fill: -color-primary;
+	-fx-background-radius: 8px;
+	border-radius: 8px;
+	-fx-border-radius: 8px;
+	background-color: -color-bg;
+	-fx-background-color: -color-bg;
+	border-color: -color-secondary;
+	-fx-border-color: -color-secondary;
+	border-width: 3px;
+	-fx-border-width: 3px;
+}
+
+#lightTheme .sheetTextarea{
+	font-family: 'Arial';
+	-fx-font-family: 'Arial';
+	font-size: 40pt;
+	-fx-font-size: 40pt;
+	background-color: -color-bg;
+	-fx-background-color: -color-bg;
+	-fx-background-radius: 8px;
+	border-radius: 8px;
+	-fx-border-radius: 8px;
+	border-color: -color-bg;
+	-fx-border-color: -color-bg;
+}
+
+#lightTheme .controlButton{
+	font-size: 18pt;
+	-fx-font-size: 18pt;
+	-fx-background-radius: 100%;
+}
+
+#lightTheme .displayBpmText{
+	font-size: 18pt;
+	-fx-font-size: 18pt;
+	fill: -color-primary;
+	-fx-text-fill: -color-primary;
+	-fx-background-radius: 8px;
+	border-radius: 8px;
+	-fx-border-radius: 8px;
+	background-color: -color-bg;
+	-fx-background-color: -color-bg;
+	border-color: -color-secondary;
+	-fx-border-color: -color-secondary;
+	border-width: 3px;
+	-fx-border-width: 3px;
+}
+
+#lightTheme .slider .thumb {
+	-fx-background-radius: 8px;
+	border-radius: 8px;
+	-fx-border-radius: 8px;
+	background-color: -color-bg;
+	-fx-background-color: -color-bg;
+	border-color: -color-secondary;
+	-fx-border-color: -color-secondary;
+}
+
+#lightTheme .slider .track {
+	height: 10pt;
+	-fx-height: 10pt;
+	background-color: -color-secondary;
+	-fx-background-color: -color-secondary;
+    -fx-control-inner-background: -color-secondary;
+}
+
+/* ************************************************** */
+
+
+#highContrastTheme {
+	-color-primary: #FFE800;
+	-color-secondary: #323232;
+	-color-hover: #FFE800;
+	-color-bg: #000; 
+	background-color: -color-bg;
+	-fx-background-color: -color-bg;
+}
+
+#highContrastTheme .titlePane{
+	background-color: -color-secondary;
+	-fx-background-color: -color-secondary;
+	-fx-background-radius: 0 0 8px 8px;
+	border-radius: 0 0 8px 8px;
+	-fx-border-radius: 0 0 8px 8px;
+
+}
+
+#highContrastTheme .sheetPane{
+	background-color: -color-secondary;
+	-fx-background-color: -color-secondary;
+	-fx-background-radius: 8px;
+	border-radius: 8px;
+	-fx-border-radius: 8px;
+	border-color: -color-secondary;
+	-fx-border-color: -color-secondary;
+}
+
+#highContrastTheme .title{
+	font-size: 28pt;
+	-fx-font-size: 28pt;
+	font-family: 'Arial';
+	-fx-font-family: 'Arial';
+	font-weight: bold;
+	-fx-font-weight: bold;
+	fill: -color-primary;
+	-fx-fill: -color-primary;
+}
+
+#highContrastTheme .button{
+	font-size: 16pt;
+	-fx-font-size: 16pt;
+	font-family: 'Arial';
+	-fx-font-family: 'Arial';
+	font-weight: bold;
+	-fx-font-weight: bold;
+	fill: -color-primary;
+	-fx-text-fill: -color-primary;
+	-fx-background-radius: 8px;
+	background-color: -color-secondary;
+	-fx-background-color: -color-secondary;
+}
+
+#highContrastTheme .button-small{
+	font-size: 14pt;
+	-fx-font-size: 14pt;
+	font-family: 'Arial';
+	-fx-font-family: 'Arial';
+	font-weight: bold;
+	-fx-font-weight: bold;
+	fill: -color-primary;
+	-fx-text-fill: -color-primary;
+	border-radius: 8px;
+	-fx-border-radius: 8px;
+	background-color: -color-bg;
+	-fx-background-color: -color-bg;
+}
+
+#highContrastTheme .textField{
+	font-size: 14pt;
+	-fx-font-size: 14pt;
+	fill: -color-primary;
+	-fx-text-fill: -color-primary;
+	-fx-background-radius: 8px;
+	border-radius: 8px;
+	-fx-border-radius: 8px;
+	background-color: -color-bg;
+	-fx-background-color: -color-bg;
+	border-color: -color-secondary;
+	-fx-border-color: -color-secondary;
+	border-width: 3px;
+	-fx-border-width: 3px;
+}
+
+#highContrastTheme .sheetTextarea{
+	font-family: 'Arial';
+	-fx-font-family: 'Arial';
+	font-size: 40pt;
+	-fx-font-size: 40pt;
+	background-color: -color-bg;
+	-fx-background-color: -color-bg;
+	-fx-background-radius: 8px;
+	border-radius: 8px;
+	-fx-border-radius: 8px;
+	border-color: -color-bg;
+	-fx-border-color: -color-bg;
+}
+
+#highContrastTheme .controlButton{
+	font-size: 18pt;
+	-fx-font-size: 18pt;
+	-fx-background-radius: 100%;
+}
+
+#highContrastTheme .displayBpmText{
+	font-size: 18pt;
+	-fx-font-size: 18pt;
+	fill: -color-primary;
+	-fx-text-fill: -color-primary;
+	-fx-background-radius: 8px;
+	border-radius: 8px;
+	-fx-border-radius: 8px;
+	background-color: -color-bg;
+	-fx-background-color: -color-bg;
+	border-color: -color-secondary;
+	-fx-border-color: -color-secondary;
+	border-width: 3px;
+	-fx-border-width: 3px;
+}
+
+#highContrastTheme .slider .thumb {
+	-fx-background-radius: 8px;
+	border-radius: 8px;
+	-fx-border-radius: 8px;
+	background-color: -color-bg;
+	-fx-background-color: -color-bg;
+	border-color: -color-primary;
+	-fx-border-color: -color-primary;
+}
+
+#highContrastTheme .slider .track {
+	height: 10pt;
+	-fx-height: 10pt;
+	background-color: -color-primary;
+	-fx-background-color: -color-primary;
+    -fx-control-inner-background: -color-primary;
+}
